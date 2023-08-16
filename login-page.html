@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANKING APP</title>
+    <script src="https://kit.fontawesome.com/dc573697cb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Press+Start+2P&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-page">
+    <div class="title"><img id="moon-icon-title" src="images/MOON-LOGO.png" alt="Rocket" class="moon-image">LunarFinance</div>
+    <div class="login-container">
+      
+        <div class="logInforms">
+        <img src="images/Rocket-icon.png" alt="rocketIcon">
+        <h2>Riding the Financial Galaxy, To the Moon and Beyond!</h2>
+        <form >
+            <h3>Login to your account</h3>
+            <h3>Username</h3>
+            <input id="encodedUserName" type="text" required>
+            <h3>Password</h3>
+            <input id="encodedPassWord" type="password" required>
+            <div class="button-container">
+            <button id="LogIn" type="submit">Sign In</button>
+            <button id="signUp" type="submit">Sign Up</button>
+        </form>
+        </div>
+     
+        <div class="signUpForms">
+
+           <h3>First Name</h3>
+            <input id="newFirstName" type="text" required>
+            <h3>Last Name</h3>
+            <input id="newLastName" type="text" required>
+            <h3>Date of Birth</h3>
+            <input id="newDOB" type="date" id="dob" name="dob" required>
+            <h3>Contact Number</h3>
+            <input id="newContactNum"type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number (up to 11 digits)" oninput="restrictInput(event)" required>
+            <h3>Email Address</h3>
+            <input id="newEmailAdd" type="email" name="Email Address" size="50" placeholder="email@example.com" required>
+          
+            
+            <h3>Username</h3>
+            <input id="NewUserName" type="text" required>
+            <h3>Password</h3>
+            <input id="NewPassword" type="password" required>
+
+           <h3>Repeat Password</h3>
+            <input id="repeatPassword" type="password" required>
+            
+            <button id="SubmitSignupButton" type="submit">Submit</button>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+<script src="scripts.js"></script>
+</html>

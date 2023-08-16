@@ -1,0 +1,289 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F8F1F1;
+    color: #11698E;
+    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Press Start 2P', cursive;
+    font-family: 'Work Sans', sans-serif;
+    min-height: 100vh;
+}
+
+.login-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 120px;
+    font-weight: bolder;
+    padding-top: 80px;
+}
+
+#moon-icon-title {
+    width: 180px;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 5px solid #19456B;
+    border-radius: 20px;
+    padding: 20px;
+    width: 500px;
+    height: auto;
+    background-color: #91C8E4;
+    color: #19456B;
+    margin-bottom: 100px;
+}
+
+
+
+.signUpForms{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+}
+
+.signUpForms {
+    display: none;
+}
+
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #19456B;
+}
+
+.login-container input {
+    width: 450px; 
+    height: 25px;
+    padding: 10px; 
+    margin: 10px 0; 
+    border: 3px solid #585555; 
+    border-radius: 10px; 
+    font-size: 16px; 
+}
+
+.login-container img{
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+}
+
+.login-container h2{
+    font-size: 2rem;
+}
+
+.login-container h3 {
+    font-size: 1.5rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.login-container button {
+    width: 30%;
+    padding: 10px; 
+    margin: 10px 0; 
+    border: 3px solid #585555; 
+    border-radius: 10px; 
+    font-size: 16px; 
+}
+
+.login-container button:hover {
+    background-color: #ccc;
+    border: 3px solid black;
+}
+
+
+
+.sidebar {
+    position: fixed; 
+    top: 0; 
+    right: 0;
+    left: 0; 
+    width: 315px; 
+    height: 100%; 
+    display: grid;
+    align-items: center;
+    background-color: #91C8E4;
+    color: #19456B;
+    
+}
+
+.sidebar a{
+    text-decoration: none;
+}
+
+#header {
+    display: flex;
+    align-items: center; 
+    width: 100px;
+    height: 120px;
+    font-weight: bold;
+    font-size: 2rem;
+    padding-left: 10px
+}
+
+#moon-icon{
+    width: 80px;
+    
+}
+
+
+
+.icon {
+    display: flex;
+    align-items: center;
+    width: auto;
+    text-decoration: none;
+    color: #19456B;
+    font-size: 3.5rem;
+    font-weight: lighter;
+    padding-left: 10px;
+    height: 155px;
+}
+
+.icon:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.sidebar .icon.active {
+    background-color: white;
+    
+}
+
+.icon p {
+    font-size: 2rem;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.icon a {
+    text-decoration: none;
+}
+
+
+.main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 330px; /* Adjust this value to match your sidebar width */
+    padding-top: 20px; /* Add padding to create space from the top */
+}
+
+.hidden {
+    display: none;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: auto;
+    height: 100%;
+    flex-direction: column; /* Align items vertically within the container */
+    align-items: flex-start; /* Align items to the start (left) */
+    width: 100%; /* Allow content to expand across the available width */
+}
+
+#dashboard-greeting {
+    grid-area: 1 / 1 / 1 / 1;
+    font-size: 5rem;
+}
+
+.my-accounts {
+    grid-area: 2 / 1 / 2 / 1;
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    font-weight: bold;
+    
+}
+
+.my-accounts h2 {
+    font-size: 3rem;
+}
+
+#account{
+    grid-area: 3 / 1 / 5 / 1;;
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 350px;
+    height: 265px;
+    font-size: 2rem;
+    font-weight: lighter;
+    padding: 10px;
+}
+
+.Widthdraw{
+    grid-area: 3 / 2 / 3 / 2;
+    
+    
+}
+
+
+.Deposit{
+    grid-area: 4 / 2 / 4 / 2;
+    
+}
+
+.Widthdraw button,
+.Deposit button{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 180px;
+    height: 130px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.Widthdraw img,
+.Deposit img{
+    width: 50px;
+ 
+}
+
+.Widthdraw img,
+.Deposit img{ 
+    padding: 10px;
+}
+
+.transactions{
+    grid-area: 5 / 1 / 5 / 2;
+}
+
+
+
+
