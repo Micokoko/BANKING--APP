@@ -9,20 +9,43 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Press+Start+2P&family=Work+Sans&display=swap" rel="stylesheet">
+
 </head>
 <body>
+    <div class="login-page">
+        <div class="title"><img id="moon-icon-title" src="images/MOON-LOGO.png" alt="Rocket" class="moon-image">LunarFinance</div>
+        <div class="login-container">
+          
+            <div class="logInforms">
+            <img src="images/Rocket-icon.png" alt="rocketIcon">
+            <h2>Riding the Financial Galaxy, To the Moon and Beyond!</h2>
+            <form >
+                <h3>Login to your account</h3>
+                <h3>Username</h3>
+                <input id="encodedUserName" type="text" required>
+                <h3>Password</h3>
+                <input id="encodedPassWord" type="password" required>
+                <div class="button-container">
+                <button id="LogIn" type="submit">Sign In</button>
+            </form>
+            </div>
+         
+  
+        </div>
+        </div>
+    </div>
 
-
+<div class="appProper"> 
     <div class="sidebar">
         <div id="header"><img id="moon-icon" src="images/MOON-LOGO.png" alt="Rocket" class="moon-image">LunarFinance</div>
 
         <a href=".home-content" class="anchor">
             <div class="icon"><i class='fas fa-university'></i><p>Home</p></div>
         </a>
-        <a href=".transfer-content" class="anchor">
-            <div class="icon"><i class="fa-solid fa-money-bill-transfer"></i><p>Transfer</p></div>
+        <a href=".create-new-account" id='create-new-account-sidebar' class="anchor">
+            <div class="icon"><i class="fa-solid fa-user-plus"></i></i><p>Account Creation</p></div>
         </a>
-        <a href=".expense-Tracker-content" class="anchor">
+        <a href=".expense-tracker-content" id="expense-tracker-sidebar" class="anchor">
             <div class="icon"><i class="fa-solid fa-scale-balanced"></i><p>Expense Tracker</p></div>
         </a>
      
@@ -37,28 +60,83 @@
 
 
     <div class="main">
+
+        
         <div class="content home-content hidden">
-            <div class="dashboard-container">
-                <div id="dashboard-greeting">Hello Mico!</div>
-                    <div class="my-accounts"><h2>My Accounts</h2></div>
-                    <div id="account">Account 1 Bal: $1,700.00</div>
-                    
-                <div class="Widthdraw"><button type="submit"><img src="images/cash-withdrawal.png"> <p>Widthdraw</p></button></div>
-                <div class="Deposit"><button type="submit"><img src="images/cash-deposit.png"><p>Deposit</p></button></div>
-                <div class="transactions"><h3>Transactions</h3>
-                        <ul>Transaction 1</ul>
-                        <ul>Transaction 2</ul>
-                </div>
+        <div class="admin-home-page">
+            <div id="userForm">
+                <h2>Admin Page</h2>
+            
+              
+              <div id="BankDeposit">Account Balance: $0.00</div>
+              <section id="hidden">
+                <button id="depositButton">Deposit</button>
+                <button id="withdrawButton">Withdraw</button>
+              </section>
+          
+              <h2>User List</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>User Name</th>
+                    <th>Clients Name</th>
+                    <th>User Balance</th>
+                    <th>Account Number</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+              </table>
             </div>
-            <!-- Home Page Content Here -->
+
         </div>
-        <div class="content transfer-content hidden">
-            <h2>Welcome to the Transfer Page!</h2>
-            <!-- Transfer Page Content Here -->
         </div>
-        <div class="content expense-Tracker-content hidden">
-            <h2>Expense Tracker</h2>
-            <!-- Transaction History Content Here -->
+
+        <div class="user-home-page">
+            <div id="dashboard-greeting">Welcome!</div>
+            <div class="my-accounts"><h2>My Accounts</h2></div>
+            <div id="account">Account 1 Bal: $1,700.00</div>
+            
+            <div class="Widthdraw"><button type="submit"><img src="images/cash-withdrawal.png"> <p>Widthdraw</p></button></div>
+            <div class="Deposit"><button type="submit"><img src="images/cash-deposit.png"><p>Deposit</p></button></div>
+        </div>
+   
+        
+        <div class="content create-new-account hidden">
+            <div class="signUpForms">
+
+               <h1>Account Creation</h1> 
+                <h3>First Name</h3>
+                 <input id="newFirstName" type="text" required>
+                 <h3>Last Name</h3>
+                 <input id="newLastName" type="text" required> 
+                 <h3>Username</h3>
+                 <input id="NewUserName" type="text" required>
+                 <h3>Password</h3>
+                 <input id="NewPassword" type="password" required>
+
+                <h3>Repeat Password</h3>
+                <input id="repeatPassword" type="password" required>
+                 <h3>Date of Birth</h3>
+                 <input id="newDOB" type="date" id="dob" name="dob" required>
+                 <h3>Contact Number</h3>
+                 <input id="newContactNum"type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number (up to 11 digits)" oninput="restrictInput(event)" required>
+                 <h3>Email Address</h3>
+                 <input id="newEmailAdd" type="email" name="Email Address" size="50" placeholder="email@example.com" required>
+               
+                 <h3>Initial Deposit:</h3>
+                 <h4>Minimum starting deposit should be at least Php 5,000.00</h4>
+                 <input id="NewAccountBalance" type="number" required>
+                 
+
+                 
+                 <button id="SubmitSignupButton" type="submit">Submit</button>
+     
+             </div>
+        </div>
+        <div class="content expense-tracker-content hidden">
+            <h1>Expense Tracker</h1>
+                <div id ='budget-app'></div>
         </div>
         <div class="content settings-content hidden">
             <h2>Settings</h2>
@@ -69,7 +147,7 @@
             <!-- Log Out Content Here -->
         </div>
     </div>
-    
+   </div>    
 
 </body>
 <script src="scripts.js"></script>

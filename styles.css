@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
 }
 
+
 .login-page{
     display: flex;
     align-items: center;
@@ -29,36 +30,6 @@ body {
 
 #moon-icon-title {
     width: 180px;
-}
-
-.login-container {
-    display: grid;
-    grid-template-columns: auto;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border: 5px solid #19456B;
-    border-radius: 20px;
-    padding: 20px;
-    width: 500px;
-    height: auto;
-    background-color: #91C8E4;
-    color: #19456B;
-    margin-bottom: 100px;
-}
-
-
-
-.signUpForms{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: left;
-    text-align: left;
-}
-
-.signUpForms {
-    display: none;
 }
 
 
@@ -115,6 +86,22 @@ body {
 }
 
 
+
+.login-container {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 5px solid #19456B;
+    border-radius: 20px;
+    padding: 20px;
+    width: 500px;
+    height: auto;
+    background-color: #91C8E4;
+    color: #19456B;
+    margin-bottom: 100px;
+}
 
 .sidebar {
     position: fixed; 
@@ -200,6 +187,132 @@ body {
     display: none;
 }
 
+#userForm,
+#accountBalance,
+#hidden {
+
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.4rem;
+}
+
+#userName {
+  padding: 10px;
+  width: 30%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#addUserButton,
+#depositButton,
+#withdrawButton {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 1500px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.user-actions {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+#hidden {
+  display: none;
+}
+
+#userForm button{
+    padding: 10px 18px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#userForm button:hover{
+    background-color: #0056b3
+}
+
+#addUserButton:hover,
+#depositButton:hover,
+#withdrawButton:hover {
+  background-color: #0056b3;
+}
+
+
+
+.signUpForms{
+    display: flex;
+    flex-direction: column;
+    margin-left: 500px;
+    align-items: left;
+    justify-content: center;
+    text-align: left;
+}
+
+.signUpForms input{
+    width: 50vh;
+    height: 3vh;
+    font-size: 1.2rem;
+}
+
+#SubmitSignupButton {
+    margin-top: 20px;
+    width: 20vh;
+    height: 5vh;
+    font-size: 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#SubmitSignupButton:hover {
+    background-color: #0056b3
+}
+
+.signUpForms h3 {
+    margin-bottom: 0;
+    margin-top: 40px;
+}
+
+.signUpForms h4 {
+    font-style: italic;
+    font-weight: lighter;
+    padding: 0;
+    margin: 0;
+}
+
+
 .dashboard-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -207,9 +320,9 @@ body {
     grid-column-gap: 10px;
     grid-row-gap: auto;
     height: 100%;
-    flex-direction: column; /* Align items vertically within the container */
-    align-items: flex-start; /* Align items to the start (left) */
-    width: 100%; /* Allow content to expand across the available width */
+    flex-direction: column; 
+    align-items: flex-start; 
+    width: 100%; 
 }
 
 #dashboard-greeting {
@@ -233,7 +346,7 @@ body {
 }
 
 #account{
-    grid-area: 3 / 1 / 5 / 1;;
+    grid-area: 3 / 1 / 4 / 1;;
     border: 3px solid black;
     border-radius: 10px;
     width: 350px;
@@ -280,10 +393,47 @@ body {
     padding: 10px;
 }
 
-.transactions{
-    grid-area: 5 / 1 / 5 / 2;
+
+.expense-Tracker {
+    font-size: 1.5rem;
+}
+
+
+.budget-tracker{
+    border-collapse: collapse;
+    background-color: white;
+    width: 1750px;
+}
+
+
+.budget-tracker tr{
+    font-size: 2rem;
+}
+
+.budget-tracker th, td{
+    padding-top:10px;
+    padding-bottom: 10px;
 }
 
 
 
+.budget-tracker input, select{
+  
+    font-size: 1rem;
+}
 
+.new-entry{
+   
+    width: 15vh;
+    height: 3vh;
+    font-size: 1.5rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.new-entry:hover {
+    background-color: #0056b3
+}
