@@ -12,6 +12,8 @@
 
 </head>
 <body>
+
+
     <div class="login-page">
         <div class="title"><img id="moon-icon-title" src="images/MOON-LOGO.png" alt="Rocket" class="moon-image">LunarFinance</div>
         <div class="login-container">
@@ -35,6 +37,7 @@
         </div>
     </div>
 
+
 <div class="appProper"> 
     <div class="sidebar">
         <div id="header"><img id="moon-icon" src="images/MOON-LOGO.png" alt="Rocket" class="moon-image">LunarFinance</div>
@@ -52,10 +55,12 @@
         <a href=".settings-content" class="anchor">
             <div class="icon"><i class="fa-solid fa-gear"></i><p>Settings</p></div>
         </a>
-        <a href=".logout-content" class="anchor">
-            <div class="icon"><i class="fa-solid fa-arrow-right-from-bracket"></i><p>Log-Out</p>
-</div>
-        </a>
+        <button id="logoutBtn" class="logout-button">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <p>Log-Out</p>
+        </button>
+        
+        
     </div>
 
 
@@ -90,17 +95,25 @@
             </div>
 
         </div>
-        </div>
+       
 
         <div class="user-home-page">
             <div id="dashboard-greeting">Welcome!</div>
             <div class="my-accounts"><h2>My Accounts</h2></div>
             <div id="account">Account 1 Bal: $1,700.00</div>
             
-            <div class="Widthdraw"><button type="submit"><img src="images/cash-withdrawal.png"> <p>Widthdraw</p></button></div>
-            <div class="Deposit"><button type="submit"><img src="images/cash-deposit.png"><p>Deposit</p></button></div>
+            <div class="widthdrawDepo">
+            <div id="Widthdraw"><button type="submit"><img src="images/cash-withdrawal.png"> <p>Widthdraw</p></button></div>
+            <div id="Deposit"><button type="submit"><img src="images/cash-deposit.png"><p>Deposit</p></button></div>
+            <div id="SendMoney"><button type="submit"><img src="images/send-money-icon.png"><p>Send Money</p></button></div>
         </div>
-   
+
+            <div class="budgetAppContainer">
+                <div id="budget-app-container"></div>
+            </div>
+
+        </div>
+        </div>
         
         <div class="content create-new-account hidden">
             <div class="signUpForms">
@@ -136,7 +149,9 @@
         </div>
         <div class="content expense-tracker-content hidden">
             <h1>Expense Tracker</h1>
-                <div id ='budget-app'></div>
+                <div class="budgetAppContainer">
+                <div id="budget-app-container"></div>
+                </div>
         </div>
         <div class="content settings-content hidden">
             <h2>Settings</h2>
