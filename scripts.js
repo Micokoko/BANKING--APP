@@ -1,12 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Hide the appProper content initially
+    const signUpButton = document.getElementById("SignUpBtn");
     const appProper = document.querySelector(".appProper");
     appProper.style.display = 'none';
   
     // Show the login page content
     const loginPage = document.querySelector(".login-page");
-  
+    const signUpFormsHomepage = document.querySelector('.signUpFormsHomepage')
+    const logInFormsWindow = document.querySelector('.logInFormsWindow')
+
     loginPage.style.display = 'flex';
+    signUpFormsHomepage.style.display = 'none'
+
+    signUpButton.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent form submission
+        signUpFormsHomepage.style.display = 'block'
+        logInFormsWindow.style.display = 'none'
+    })
   }); 
   
   const encodedUserName = document.getElementById("encodedUserName");
@@ -18,73 +28,90 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   const LogInButton = document.getElementById('LogIn');
-  LogInButton.addEventListener('click', signIn);
+  LogInButton.addEventListener('click', event => signIn(event, adminUser, bankClients));
   
-  function signIn(event) {
-    event.preventDefault(); 
-    const enteredUserName = encodedUserName.value;
-    const enteredPassWord = encodedPassWord.value;  
+  function authenticateUser(username, password, adminUser, bankClients) {
+    // Check if it's the admin
+    if (username === adminUser.adminName && password === adminUser.adminPass) {
+        return adminUser;
+    }
 
-    if (enteredUserName === adminUser.adminName && enteredPassWord === adminUser.adminPass) {
-        // Handle admin user
-        const loginPage = document.querySelector(".login-page");
-        const appProper = document.querySelector(".appProper");
-        const userHomePage = document.querySelector('.user-home-page')
-        const adminHomePage = document.querySelector('.admin-home-page')
-        const expenseTracker = document.querySelector('#expense-tracker-sidebar')
+    // Authenticate regular users
+    const authenticatedUser = bankClients.find(client =>
+        client.userName === username && client.password === password
+    );
+    return authenticatedUser || null;
+}
 
-        loginPage.style.display = 'none';
-        appProper.style.display = 'block';
+// Define the updateDOMWithUserData function
+function updateDOMWithUserData(user) {
+    const loginPage = document.querySelector(".login-page");
+    const appProper = document.querySelector(".appProper");
+    const expenseTracker = document.querySelector('#expense-tracker-sidebar');
+    const userHomePage = document.querySelector('.user-home-page');
+    const adminHomePage = document.querySelector('.admin-home-page');
+    const dashboardgreeting = document.querySelector('#dashboard-greeting');
+    const displayBal = document.querySelector('#account');
+    const budgetAppContainer = document.getElementById('budget-app-container');
+    
+
+    loginPage.style.display = 'none';
+    appProper.style.display = 'block';
+    expenseTracker.style.display = 'none';
+
+    if (user === adminUser) {
         expenseTracker.style.display = 'none';
         userHomePage.style.display = 'none';
         adminHomePage.style.display = 'block';
+    } else {
+       
+        adminHomePage.style.display = 'none';
+        userHomePage.style.display = 'grid';
+        dashboardgreeting.textContent = `Welcome ${user.userName}!`;
+        const formattedBalance = user.accountBalance.toLocaleString("en-PH", {
+            style: "currency",
+            currency: "PHP"
+        });
+        displayBal.textContent = `Accout No.: ${user.accountNumber} Account Balance: ${formattedBalance}`;
 
-        return; // Exit the function after handling admin
-    }
-
-    let userFound = false;
-
-    for (let i = 0; i < bankClients.length; i++) {
-        if (enteredUserName === bankClients[i].userName && enteredPassWord === bankClients[i].password) {
-            userFound = true;
-
-            const loginPage = document.querySelector(".login-page");
-            const appProper = document.querySelector(".appProper");
-            const userHomePage = document.querySelector('.user-home-page')
-            const adminHomePage = document.querySelector('.admin-home-page')
-            const AccountCreation = document.querySelector('#create-new-account-sidebar')
-            const expenseTracker = document.querySelector('#expense-tracker-sidebar')
-            const dashboardgreeting = document.querySelector('#dashboard-greeting')
-            const displayBal = document.querySelector('#account')
-
-            loginPage.style.display = 'none';
-            appProper.style.display = 'block';
-
-            if (enteredUserName === 'admin') {
-                expenseTracker.style.display = 'none';
-                userHomePage.style.display = 'none';
-                adminHomePage.style.display = 'block';
+        // Check if the user has a budgetTrackerUser and entries
+        if (user.budgetTrackerUser && user.budgetTrackerUser.entries) {
+            // Create or update the BudgetTracker instance
+            if (!budgetAppContainer.hasChildNodes()) {
+                const budgetTracker = new BudgetTracker('#budget-app-container', user);
+                budgetTracker.updateSummary(); // Update the summary initially
+                budgetAppContainer.appendChild(budgetTracker.container);
             } else {
-                AccountCreation.style.display = 'none';
-                adminHomePage.style.display = 'none';
-                userHomePage.style.display = 'grid';
-                dashboardgreeting.textContent = `Welcome ${bankClients[i].userName}!`;
-                const formattedBalance = bankClients[i].accountBalance.toLocaleString("en-PH", {
-                    style: "currency",
-                    currency: "PHP"
-                });
-
-                displayBal.textContent = `Account Balance: ${formattedBalance}`;
-
-               
+                const budgetTracker = budgetAppContainer.querySelector('.budget-tracker');
+                budgetTracker.user = user; // Update the user object in the existing instance
+                budgetTracker.load(); // Load the entries
+                budgetTracker.updateSummary(); // Update the summary
             }
+        } else {
+            // Clear the budgetAppContainer if no budgetTrackerUser or entries
+            budgetAppContainer.innerHTML = '';
         }
     }
+}
 
-    if (!userFound) {
+
+// Modify the signIn function
+function signIn(event, adminUser, bankClients) {
+    event.preventDefault(); 
+    const enteredUserName = encodedUserName.value;
+    const enteredPassWord = encodedPassWord.value;
+
+    const authenticatedUser = authenticateUser(enteredUserName, enteredPassWord, adminUser, bankClients);
+
+    if (authenticatedUser) {
+        updateDOMWithUserData(authenticatedUser);
+    } else {
+        // Handle authentication failure
         alert("User credentials do not match");
     }
 }
+
+
 
 
 
@@ -129,9 +156,16 @@ document.addEventListener("DOMContentLoaded", function() {
   
   
   
+ const logoutBtn = document.getElementById("logoutBtn");
+
+  logoutBtn.addEventListener("click", function() {
+      window.location.href = "index.html"; // Redirect to the index page
+  });
   
-  const SubmitSignupButton = document.getElementById('SubmitSignupButton')
-  SubmitSignupButton.addEventListener('click', registerUser)
+  const SubmitSignupButtonHome = document.getElementById('SubmitSignupButtonHome')
+  SubmitSignupButtonHome.addEventListener('click', registerUser)
+
+ 
   
   let BankDeposit = 0;
  
@@ -140,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
   ];
   
   
-  
+ 
   
   
   
@@ -183,7 +217,9 @@ document.addEventListener("DOMContentLoaded", function() {
           password: registeredPassword,
           accountBalance: parseFloat(NewAccountBalanceInput), // Parse the value as a float
         accountNumber: generateAccountNumber(),
-        budgetTrackerUser: new BudgetTracker('#budget-app')
+        budgetTrackerUser: {
+            entries: []
+        }
       }
   
   
@@ -250,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function() {
           return;
       }
       
-  
+      
       
       // If all conditions are satisfied, add the new user and proceed
       alert(`Hi! The account of Ms/Mr ${registerUserName} has just been created. Welcome to LunarFinance.`);
@@ -265,9 +301,11 @@ document.addEventListener("DOMContentLoaded", function() {
       updateUserTable()
       
 
-      const homeAnchor = document.querySelector('.anchor[href=".home-content"]');
-      homeAnchor.click();
+    
       updateAccountBalanceDisplay()
+
+      location.reload();
+      
   }
   
   
@@ -343,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   // Transfer money function
   function send(senderNumber) {
-    const recipientNumber = prompt("Enter the recipient's name:");
+    const recipientNumber = prompt("Enter the recipient's Account Number:");
     const senderIndex = bankClients.findIndex((user) => user.accountNumber === senderNumber);
     const recipientIndex = bankClients.findIndex((user) => user.accountNumber === recipientNumber);
   
@@ -411,7 +449,9 @@ document.addEventListener("DOMContentLoaded", function() {
   updateUserTable();
   
   class BudgetTracker {
-    constructor(containerId) {
+    constructor(containerId, user) {
+        this.containerId = containerId;
+        this.user = user;
         this.container = document.querySelector(containerId);
         this.container.innerHTML = BudgetTracker.html(); // Set up the initial HTML structure
 
@@ -423,10 +463,9 @@ document.addEventListener("DOMContentLoaded", function() {
             this.onNewEntryBtnClick();
         });
 
-        // Load initial data from Local Storage
+        // Load initial data from user's budgetTrackerUser
         this.load();
     }
-    
   static html() {
       return `
           <table class="budget-tracker">
@@ -485,14 +524,14 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   load() {
-      const entries = JSON.parse(localStorage.getItem("budget-tracker-entries-dev") || "[]");
-  
-      for (const entry of entries) {
-          this.addEntry(entry);
-      }
-  
-      this.updateSummary();
-  }
+    const entries = this.user.budgetTrackerUser.entries || [];
+
+    for (const entry of entries) {
+        this.addEntry(entry);
+    }
+
+    this.updateSummary();
+}
   
   updateSummary() {
       const total = this.getEntryRows().reduce((total, row) => {
@@ -512,19 +551,26 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   save() {
-      const data = this.getEntryRows().map(row => {
-          return {
-              date: row.querySelector(".input-date").value,
-              description: row.querySelector(".input-description").value,
-              type: row.querySelector(".input-type").value,
-              amount: parseFloat(row.querySelector(".input-amount").value),
-          };
-      });
-  
-      localStorage.setItem("budget-tracker-entries-dev", JSON.stringify(data));
-      this.updateSummary();
-  }
-  
+    const data = this.getEntryRows().map(row => {
+        return {
+            date: row.querySelector(".input-date").value,
+            description: row.querySelector(".input-description").value,
+            type: row.querySelector(".input-type").value,
+            amount: parseFloat(row.querySelector(".input-amount").value),
+        };
+    });
+
+    this.user.budgetTrackerUser.entries = data;
+    updateLocalStorage(); // Update the entire bankClients array in local storage
+
+    this.updateSummary();
+
+    if (currentUser) {
+        currentUser.budgetTrackerUser.entries = data; // Save entries to currentUser's budgetTrackerUser
+        updateLocalStorage(); // Update the entire bankClients array in local storage
+    }
+}
+
   addEntry(entry = {}) {
       this.root.querySelector(".entries").insertAdjacentHTML("beforeend", BudgetTracker.entryHtml());
   
@@ -555,14 +601,18 @@ document.addEventListener("DOMContentLoaded", function() {
       e.target.closest("tr").remove();
       this.save();
   }
+
+  static containerHtml() {
+    return `
+        <div id="budget-app-container" class="budget-app-container"></div>
+    `;
+}
+  
   }
   
-  const budgetTracker = new BudgetTracker('#budget-app')
-  
-  const logoutBtn = document.getElementById("logoutBtn");
+  currentUser.budgetTrackerUser = new BudgetTracker('#budget-app-container')
 
-logoutBtn.addEventListener("click", (event) => {
-    event.preventDefault(); 
  
-    window.location.href = "index.html"; 
-});
+
+
+  
