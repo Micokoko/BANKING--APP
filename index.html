@@ -21,16 +21,48 @@
             <div class="logInforms">
             <img src="images/Rocket-icon.png" alt="rocketIcon">
             <h2>Riding the Financial Galaxy, To the Moon and Beyond!</h2>
-            <form >
+            <form class="logInFormsWindow">
                 <h3>Login to your account</h3>
                 <h3>Username</h3>
                 <input id="encodedUserName" type="text" required>
                 <h3>Password</h3>
                 <input id="encodedPassWord" type="password" required>
                 <div class="button-container">
-                <button id="LogIn" type="submit">Sign In</button>
+                <button id="LogIn" type="submit">Login In</button>
+                <button id="SignUpBtn" type="submit">Sign Up</button>
             </form>
             </div>
+            
+            <div class="signUpFormsHomepage">
+
+                <h1>Account Creation</h1> 
+                 <h3>First Name</h3>
+                  <input id="newFirstName" type="text" required>
+                  <h3>Last Name</h3>
+                  <input id="newLastName" type="text" required> 
+                  <h3>Username</h3>
+                  <input id="NewUserName" type="text" required>
+                  <h3>Password</h3>
+                  <input id="NewPassword" type="password" required>
+ 
+                 <h3>Repeat Password</h3>
+                 <input id="repeatPassword" type="password" required>
+                  <h3>Date of Birth</h3>
+                  <input id="newDOB" type="date" id="dob" name="dob" required>
+                  <h3>Contact Number</h3>
+                  <input id="newContactNum"type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number (up to 11 digits)" oninput="restrictInput(event)" required>
+                  <h3>Email Address</h3>
+                  <input id="newEmailAdd" type="email" name="Email Address" size="50" placeholder="email@example.com" required>
+                
+                  <h3>Initial Deposit:</h3>
+                  <h4>Minimum starting deposit should be at least Php 5,000.00</h4>
+                  <input id="NewAccountBalance" type="number" required>
+                  
+ 
+                  
+                  <button id="SubmitSignupButtonHome" type="submit">Submit</button>
+      
+              </div>
          
   
         </div>
@@ -45,9 +77,7 @@
         <a href=".home-content" class="anchor">
             <div class="icon"><i class='fas fa-university'></i><p>Home</p></div>
         </a>
-        <a href=".create-new-account" id='create-new-account-sidebar' class="anchor">
-            <div class="icon"><i class="fa-solid fa-user-plus"></i></i><p>Account Creation</p></div>
-        </a>
+
         <a href=".expense-tracker-content" id="expense-tracker-sidebar" class="anchor">
             <div class="icon"><i class="fa-solid fa-scale-balanced"></i><p>Expense Tracker</p></div>
         </a>
@@ -55,9 +85,11 @@
         <a href=".settings-content" class="anchor">
             <div class="icon"><i class="fa-solid fa-gear"></i><p>Settings</p></div>
         </a>
-        <a href="index.html" id='logoutBtn' class="anchor">
-            <div class="icon"><i class="fa-solid fa-arrow-right-from-bracket"></i><p>Log-Out</p></div>
-        </a>
+        <button id="logoutBtn" class="logout-button">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <p>Log-Out</p>
+        </button>
+        
         
     </div>
 
@@ -101,47 +133,24 @@
             <div id="account">Account 1 Bal: $1,700.00</div>
             
             <div class="widthdrawDepo">
-            <div class="Widthdraw"><button type="submit"><img src="images/cash-withdrawal.png"> <p>Widthdraw</p></button></div>
-            <div class="Deposit"><button type="submit"><img src="images/cash-deposit.png"><p>Deposit</p></button></div>
+            <div id="Widthdraw"><button type="submit"><img src="images/cash-withdrawal.png"> <p>Widthdraw</p></button></div>
+            <div id="Deposit"><button type="submit"><img src="images/cash-deposit.png"><p>Deposit</p></button></div>
+            <div id="SendMoney"><button type="submit"><img src="images/send-money-icon.png"><p>Send Money</p></button></div>
+        </div>
+
+            <div class="budgetAppContainer">
+                <div id="budget-app-container"></div>
             </div>
+
         </div>
         </div>
         
-        <div class="content create-new-account hidden">
-            <div class="signUpForms">
 
-               <h1>Account Creation</h1> 
-                <h3>First Name</h3>
-                 <input id="newFirstName" type="text" required>
-                 <h3>Last Name</h3>
-                 <input id="newLastName" type="text" required> 
-                 <h3>Username</h3>
-                 <input id="NewUserName" type="text" required>
-                 <h3>Password</h3>
-                 <input id="NewPassword" type="password" required>
-
-                <h3>Repeat Password</h3>
-                <input id="repeatPassword" type="password" required>
-                 <h3>Date of Birth</h3>
-                 <input id="newDOB" type="date" id="dob" name="dob" required>
-                 <h3>Contact Number</h3>
-                 <input id="newContactNum"type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your contact number (up to 11 digits)" oninput="restrictInput(event)" required>
-                 <h3>Email Address</h3>
-                 <input id="newEmailAdd" type="email" name="Email Address" size="50" placeholder="email@example.com" required>
-               
-                 <h3>Initial Deposit:</h3>
-                 <h4>Minimum starting deposit should be at least Php 5,000.00</h4>
-                 <input id="NewAccountBalance" type="number" required>
-                 
-
-                 
-                 <button id="SubmitSignupButton" type="submit">Submit</button>
-     
-             </div>
-        </div>
         <div class="content expense-tracker-content hidden">
             <h1>Expense Tracker</h1>
-                <div id ='budget-app'></div>
+                <div class="budgetAppContainer">
+                <div id="budget-app-container"></div>
+                </div>
         </div>
         <div class="content settings-content hidden">
             <h2>Settings</h2>
