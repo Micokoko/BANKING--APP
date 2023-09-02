@@ -8,6 +8,7 @@ This README file provides an overview of the functions and features of the Banki
 - [Features](#features)
 - [Usage](#usage)
 - [Functions](#functions)
+- [Access the Website](#access-the-website)
 - [Contributors](#contributors)
 
 ## Features
@@ -80,6 +81,9 @@ The application is powered by various JavaScript functions. Below is a brief ove
 
 - **`updateAccountBalanceDisplay()`**
   - Description: Updates the displayed total account balance.
+
+## Access the Website
+To access the Banking App: LunarFinance website, click the following link: [Banking App: LunarFinance](https://micokoko.github.io/BANKING--APP/index.html)
 
 ## Contributors
 - Miguel Enrico Balina
